@@ -15,6 +15,23 @@
   const addMessageForm = document.querySelector(opts.addMessageForm);
   const userNameInput = document.querySelector(opts.userNameInput);
   const messageContentInput = document.querySelector(opts.messageContentInput);
-  const userName = '';
+  let userName = '';
+
+  function login(e) {
+    e.preventDefault();
+
+    if (!userNameInput.value) {
+      alert('Field cannot be empty');
+      return;
+    } else {
+      userName = userNameInput.value;
+        loginForm.classList.remove('show');
+        messagesSection.classList.add('show');
+    }
+  }
+
+  loginForm.addEventListener('submit', e => {
+    login(e);
+  });
 
 }
