@@ -1,5 +1,8 @@
 'use strict';
 {
+  const socket = io();
+  socket.on('message', ({ author, content }) => addMessage(author, content));
+
   const opts = {
     loginForm: '#welcome-form',
     messagesSection: '#messages-section',
@@ -60,11 +63,14 @@
   function sendMessage(e) {
     e.preventDefault();
 
-    if (!messageContentInput.value) {
+    const messageContent = messageContentInput.value;
+
+    if (!messageContent.length) {
       alert('You can\'t send empty message');
       return;
     } else {
-      addMessage(userName, messageContentInput.value);
+      addMessage(userName, messageContent);
+      socket.emit('message', { author: userName, content: messageContent })
       messageContentInput.value = '';
     }
   }
@@ -75,6 +81,6 @@
 
   addMessageForm.addEventListener('submit', e => {
     sendMessage(e);
-  })
+  });
 
 }
