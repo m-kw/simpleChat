@@ -55,16 +55,15 @@
     div.classList.add('message__content');
     div.innerHTML = content;
 
-    const close = document.createElement('div');
-    close.classList.add('message__close');
-    close.innerHTML = 'X';
-    close.addEventListener('click', () => message.remove());
-
-    div.appendChild(close);
-
     message.classList.add('message', 'message--received');
     if (author === userName) {
       message.classList.add('message--self');
+
+      const close = document.createElement('div');
+      close.classList.add('message__close');
+      close.innerHTML = 'X';
+      div.appendChild(close);
+      close.addEventListener('click', () => message.remove());
     }
 
     message.appendChild(heading);
