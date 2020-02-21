@@ -90,6 +90,11 @@ p {
   text-align: right;
 }
 
+.message__date {
+  font-size: 0.8rem;
+  color: #999;
+}
+
 .message__content {
   background: rgb(68, 68, 68);
   border: none;
@@ -98,6 +103,24 @@ p {
   color: #fff;
   font-size: 0.9rem;
   max-width: 200px;
+  position: relative;
+}
+
+.message__close {
+  position: absolute;
+  display: none;
+  right: 0;
+  top: 0;
+  transform: translate(-100%, 30%);
+  font-size: 0.6rem;
+}
+
+.message__close:hover {
+  cursor: pointer;
+}
+
+.message__content:hover .message__close {
+  display: block;
 }
 
 .message--self .message__content {
